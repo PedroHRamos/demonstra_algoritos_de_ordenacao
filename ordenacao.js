@@ -29,11 +29,17 @@ function Iniciar() {
 
 function blocosHTMLdeArray(arrayNumeros){
     let html = '';
+    let str_numero = "";
     for(let i = 0; i < arrayNumeros.length; i++){
-        const alturaBloco = arrayNumeros[i] * 10 + 20;
+        if(arrayNumeros[i]< 10){
+            str_numero = "0"+arrayNumeros[i];
+        }else{
+            str_numero = arrayNumeros[i];
+        }
+        const alturaBloco = arrayNumeros[i] * 5 + 25;
         html += '<div class="d-flex align-items-end bloco-azul" ' +
-            'style="height: '+ alturaBloco +'px;">\n' +// Muda altura de bloco de acordo com o número do array
-            arrayNumeros[i] +
+            'style="height: '+ alturaBloco +'px; width: '+20+'px;">\n' +// Muda altura de bloco de acordo com o número do array
+            str_numero +
             '</div>';
     }
     return html;
