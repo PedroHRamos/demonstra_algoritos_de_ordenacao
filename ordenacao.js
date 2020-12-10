@@ -52,7 +52,7 @@ $(document).ready(function(){
     function blocosHTMLdeArray_Verde(arrayNumeros){
         let html = '';
         for(let i = 0; i < arrayNumeros.length; i++){
-            const alturaBloco = (220/arrayNumeros.length*arrayNumeros[i]) + 30;
+            const alturaBloco = (220/arrayNumeros.length*arrayNumeros[i]) + 20;
             html += '<div class="d-flex align-items-end bloco-verde" ' +
                 'style="height: '+ alturaBloco +'px;  width: 20px; ">\n' +// Muda altura de bloco de acordo com o número do array
                 '<div class="valor-bloco">'+arrayNumeros[i] + '</div>'+
