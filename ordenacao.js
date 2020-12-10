@@ -18,22 +18,34 @@ function Iniciar() {
     let qtdAtribuicoesVariaveis = qtdTroca * 3;
 
     //Seta dados na tela
-    $("#arrayOriginal").html(blocosHTMLdeArray(arrayOriginal));
+    $("#arrayOriginal").html(blocosHTMLdeArray_Azul(arrayOriginal));
     $("#tempoGasto").html(JSON.stringify(tempoGasto) + "ms.");
-    $("#arrayOrdenado").html(blocosHTMLdeArray(arrayOrdenado));
+    $("#arrayOrdenado").html(blocosHTMLdeArray_Verde(arrayOrdenado));
     $("#qtdTroca").html(JSON.stringify(qtdTroca));
     $("#qtdAtribuicoesVariaveis").html(JSON.stringify(qtdAtribuicoesVariaveis));
     $("#qtdLoop").html(JSON.stringify(qtdLoop));
 
 }
 
-function blocosHTMLdeArray(arrayNumeros){
+function blocosHTMLdeArray_Azul(arrayNumeros){
     let html = '';
     for(let i = 0; i < arrayNumeros.length; i++){
-        const alturaBloco = arrayNumeros[i] * 10 + 20;
+        const alturaBloco = arrayNumeros[i] * 5 + 20;
         html += '<div class="d-flex align-items-end bloco-azul" ' +
             'style="height: '+ alturaBloco +'px;">\n' +// Muda altura de bloco de acordo com o número do array
-            arrayNumeros[i] +
+            '<div class="valor-bloco">'+arrayNumeros[i] + '</div>'+
+            '</div>';
+    }
+    return html;
+}
+
+function blocosHTMLdeArray_Verde(arrayNumeros){
+    let html = '';
+    for(let i = 0; i < arrayNumeros.length; i++){
+        const alturaBloco = arrayNumeros[i] * 5 + 20;
+        html += '<div class="d-flex align-items-end bloco-verde" ' +
+            'style="height: '+ alturaBloco +'px;">\n' +// Muda altura de bloco de acordo com o número do array
+            '<div class="valor-bloco">'+arrayNumeros[i] + '</div>'+
             '</div>';
     }
     return html;

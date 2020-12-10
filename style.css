@@ -1,11 +1,30 @@
+.valor-bloco{
+    display: none;
+    text-align: center;
+}
+
 .bloco-azul{
-    margin: 5px;
+    margin: 0;
+    width: 20px;
     border: 1px solid rgba(0, 0, 0, .2);
     background: #13b4ff;
 }
 
-.bloco-roxo{
-    margin: 5px;
+.bloco-azul:hover .valor-bloco{
+    display: block;
+    color: white;
+    text-align: center;
+}
+
+.bloco-verde{
+    margin: 0;
+    width: 20px;
     border: 1px solid rgba(0, 0, 0, .2);
-    background: #ab3fdd;
+    background: springgreen;
+}
+
+.bloco-verde:hover .valor-bloco{
+    display: block;
+    color: white;
+    text-align: center;
 }
