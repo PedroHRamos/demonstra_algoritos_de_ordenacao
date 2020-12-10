@@ -1,0 +1,11 @@
+.bloco-azul{
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background: #13b4ff;
+}
+
+.bloco-roxo{
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background: #ab3fdd;
+}

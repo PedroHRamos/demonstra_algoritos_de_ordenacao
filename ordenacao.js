@@ -1,34 +1,46 @@
 function Iniciar() {
 
     //Gera vetor com o tamanho do array definido
-    const array_aleatorio = geraArrayDesordenado(10000);
+    const array_aleatorio = geraArrayDesordenado(50);
 
     //Faz uma cópia do array original para não alterar o array original por referência
-    const numeros  = array_aleatorio.slice();
-    const numeros2 = array_aleatorio.slice();
-    const numeros3 = array_aleatorio.slice();
+    const arrayOriginal  = array_aleatorio.slice();
+    const arrayOrdenado = array_aleatorio.slice();
+    const arrayOriginalCopia = array_aleatorio.slice();
 
     //Ordena o array desordenado e salva tempo gasto para tal
-    tempoGasto = bubbleSortOriginal(numeros2);
+    let tempoGasto = bubbleSortOriginal(arrayOrdenado);
 
     //Ordena o array e obtém contagens (a contagem é separada para não afetar o tempo)
-    arrayAnalise = bubbleSortContadorTrocas(numeros3);
-    qtdTroca = arrayAnalise[0];
-    qtdLoop  = arrayAnalise[1];
-    qtdAtribuicoesVariaveis = qtdTroca * 3;
+    let arrayAnalise = bubbleSortContadorTrocas(arrayOriginalCopia);
+    let qtdTroca = arrayAnalise[0];
+    let qtdLoop = arrayAnalise[1];
+    let qtdAtribuicoesVariaveis = qtdTroca * 3;
 
     //Seta dados na tela
-    document.getElementById("arrayOriginal").innerHTML = JSON.stringify(numeros);
-    document.getElementById("tempoGasto").innerHTML = (JSON.stringify(tempoGasto)) + "ms.";
-    document.getElementById("arrayOrdenado").innerHTML = JSON.stringify(numeros2);
-    document.getElementById("qtdTroca").innerHTML = JSON.stringify(qtdTroca);
-    document.getElementById("qtdAtribuicoesVariaveis").innerHTML = JSON.stringify(qtdAtribuicoesVariaveis);
-    document.getElementById("qtdLoop").innerHTML = JSON.stringify(qtdLoop);
+    $("#arrayOriginal").html(blocosHTMLdeArray(arrayOriginal));
+    $("#tempoGasto").html(JSON.stringify(tempoGasto) + "ms.");
+    $("#arrayOrdenado").html(blocosHTMLdeArray(arrayOrdenado));
+    $("#qtdTroca").html(JSON.stringify(qtdTroca));
+    $("#qtdAtribuicoesVariaveis").html(JSON.stringify(qtdAtribuicoesVariaveis));
+    $("#qtdLoop").html(JSON.stringify(qtdLoop));
 
 }
 
+function blocosHTMLdeArray(arrayNumeros){
+    let html = '';
+    for(let i = 0; i < arrayNumeros.length; i++){
+        const alturaBloco = arrayNumeros[i] * 10 + 20;
+        html += '<div class="d-flex align-items-end bloco-azul" ' +
+            'style="height: '+ alturaBloco +'px;">\n' +// Muda altura de bloco de acordo com o número do array
+            arrayNumeros[i] +
+            '</div>';
+    }
+    return html;
+}
+
 const bubbleSortOriginal = function(array) {
-    var timeStart = performance.now();
+    const timeStart = performance.now();
     let swaps;
     do {
         swaps = false;
@@ -42,9 +54,8 @@ const bubbleSortOriginal = function(array) {
         }
     } while (swaps);// quando o swaps não for trocado para verdadeiro, não houve necessidade de trocar, portanto está ordenado.
 
-    var timeEnd = performance.now();
-    let tempoGasto = timeEnd - timeStart;
-    return tempoGasto;
+    const timeEnd = performance.now();
+    return timeEnd - timeStart;
 };
 
 const bubbleSortContadorTrocas = function(array) {
@@ -72,18 +83,17 @@ const bubbleSortContadorTrocas = function(array) {
     return analise;
 };
 function geraArrayDesordenado(n){
-    array = []
-    for(x=0; x< n; x++){
+    let array = []
+    for(let x=0; x< n; x++){
         array.push(x);
     }
 
-    arrayDesordenado = shuffle(array);
-    return arrayDesordenado;
+    return shuffle(array);
 }
 
 function shuffle(array) {
-    var m = array.length, t, i;
-  
+    let m = array.length, t, i;
+
     // While there remain elements to shuffle…
     while (m) {
   
