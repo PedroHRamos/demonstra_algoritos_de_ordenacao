@@ -136,6 +136,7 @@ $(document).ready(function(){
             $("#tamanhoArrayHide").html(JSON.stringify($("#tamanhoArray").val()));
             Iniciar();
         }else{
+            Iniciar();
             alert("Por favor, insira valores entre 2 e 30");
         }
     });
