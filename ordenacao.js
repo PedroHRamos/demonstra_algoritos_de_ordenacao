@@ -11,7 +11,7 @@ function Iniciar() {
     //Ordena o array desordenado e salva tempo gasto para tal
     tempoGasto = bubbleSortOriginal(numeros2);
 
-    //Ordena o array e obtém contagens (a contage é separada para não afetar o tempo)
+    //Ordena o array e obtém contagens (a contagem é separada para não afetar o tempo)
     arrayAnalise = bubbleSortContadorTrocas(numeros3);
     qtdTroca = arrayAnalise[0];
     qtdLoop  = arrayAnalise[1];
