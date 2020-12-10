@@ -1,2 +1,2 @@
 # OrdenaShow
-> O OrdenaShow é um site que visa deonstrar de fora didática características e funcionamento dos algorítos de ordenação.
+> O OrdenaShow é um site que visa demonstrar de forma didática as características e o funcionamento de alguns algoritmos de ordenação.
