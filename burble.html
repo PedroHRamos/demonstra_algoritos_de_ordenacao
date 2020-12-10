@@ -35,7 +35,7 @@
               Métodos de ordenação
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="burble.html">BurbleSort</a>
+              <a class="dropdown-item" href="#">BurbleSort</a>
               <a class="dropdown-item" href="#">QuickSort</a>
               <a class="dropdown-item" href="#">MergeSort</a>
             </div>
@@ -44,6 +44,38 @@
       </div>
     </nav>
     <!-- NAVBAR FIM -->
+
+    <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="tamanhoArray" class="sr-only">Tamanho do array</label>
+          <input type="number" class="form-control" id="tamanhoArray" placeholder="Tamanho do array">
+        </div>
+        <button type="button" class="btn btn-primary mb-2" id="executar_burble">Ordena!</button>
+      </form>
+
+    <div id="exibeMetodo">
+        <div class="row m-4">
+        <div id="apresentaArrayOriginal" class="">
+            Array original:
+            <div id="arrayOriginal" class="d-flex align-items-end"></div>
+        </div>
+
+        </div>
+        <div class="row m-4">
+        <div id="apresentaArray" class="">
+            Array ordenado:
+            <div id="arrayOrdenado" class="d-flex align-items-end mb-4"></div>
+            Tempo de execução: <pre id="tempoGasto"></pre>
+            Quantidade de trocas: <pre id="qtdTroca"></pre>
+            Quantidade de atribuições de valor em variáveis inteiras: <pre id="qtdAtribuicoesVariaveis"></pre>
+            Quantidade de comparações no loop: <pre id="qtdLoop"></pre>
+        </div>
+        </div>
+        <pre id="tamanhoArrayHide" style="display: none !important;" value=""></pre>
+    </div>
+
+
+    <pre id="teste"></pre>
 
 
       
