@@ -1,6 +1,8 @@
 .valor-bloco{
-    display: none;
+    opacity: 0.5;
     text-align: center;
+    color: white;
+    width: 18px;
 }
 
 .bloco-azul{
@@ -11,7 +13,7 @@
 }
 
 .bloco-azul:hover .valor-bloco{
-    display: block;
+    opacity: 1;
     color: white;
     text-align: center;
 }
@@ -24,7 +26,14 @@
 }
 
 .bloco-verde:hover .valor-bloco{
-    display: block;
+    opacity: 1;
     color: white;
     text-align: center;
+}
+
+.bloco-vermelho{
+    margin: 0;
+    width: 20px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background: #ae163e;
 }

@@ -27,7 +27,7 @@ $(document).ready(function(){
         let qtdAtribuicoesVariaveis = qtdTroca * 3;
 
         //Seta dados na tela
-        $("#arrayOriginal").html(blocosHTMLdeArray_Azul(arrayOriginal));
+        $("#arrayOriginal").html(blocosHTMLdeArray_Azul(arrayOriginal, -1));
         $("#tempoGasto").html(JSON.stringify(tempoGasto) + "ms.");
         $("#arrayOrdenado").html(blocosHTMLdeArray_Verde(arrayOrdenado));
         $("#qtdTroca").html(JSON.stringify(qtdTroca));
@@ -36,13 +36,19 @@ $(document).ready(function(){
     
     }
     
-    function blocosHTMLdeArray_Azul(arrayNumeros){
+    function blocosHTMLdeArray_Azul(arrayNumeros, indiceEmEvidencia){
         let html = '';
-        let str_numero = "";
+        let evidencia = false;
         for(let i = 0; i < arrayNumeros.length; i++){
-            const alturaBloco = (220/arrayNumeros.length*arrayNumeros[i]) + 20;
-            html += '<div class="d-flex align-items-end bloco-azul" ' +
-                'style="height: '+ alturaBloco +'px; width: 20px; ">\n' +// Muda altura de bloco de acordo com o número do array
+
+            // Se valor em evidência < 0, imprimir todos os blocos com a cor azul
+            if(indiceEmEvidencia >= 0 ){
+                evidencia = indiceEmEvidencia === i;
+            }
+
+            const alturaBloco = (220/arrayNumeros.length * arrayNumeros[i]) + 22;
+            html += '<div class="d-flex align-items-end  text-center bloco-' + (evidencia? 'vermelho' : 'azul') + '" ' +
+                'style="height: '+ alturaBloco +'px;">\n' +// Muda altura de bloco de acordo com o número do array
                 '<div class="valor-bloco">'+arrayNumeros[i] + '</div>'+
                 '</div>';
         }
@@ -52,7 +58,7 @@ $(document).ready(function(){
     function blocosHTMLdeArray_Verde(arrayNumeros){
         let html = '';
         for(let i = 0; i < arrayNumeros.length; i++){
-            const alturaBloco = (220/arrayNumeros.length*arrayNumeros[i]) + 20;
+            const alturaBloco = (220/arrayNumeros.length * arrayNumeros[i]) + 22;
             html += '<div class="d-flex align-items-end bloco-verde" ' +
                 'style="height: '+ alturaBloco +'px;  width: 20px; ">\n' +// Muda altura de bloco de acordo com o número do array
                 '<div class="valor-bloco">'+arrayNumeros[i] + '</div>'+
@@ -131,9 +137,10 @@ $(document).ready(function(){
         return array;
       }
     
-    $( "#executar_burble" ).click(function() {
-        if($("#tamanhoArray").val() > 1 && $("#tamanhoArray").val() < 31){
-            $("#tamanhoArrayHide").html(JSON.stringify($("#tamanhoArray").val()));
+    $( "#executar_bubble" ).click(function() {
+        let tamanhoArray = $("#tamanhoArray").val()
+        if(tamanhoArray > 1 && tamanhoArray < 31){
+            $("#tamanhoArrayHide").html(JSON.stringify(tamanhoArray));
             Iniciar();
         }else{
             Iniciar();
