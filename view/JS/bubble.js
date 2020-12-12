@@ -30,7 +30,7 @@ $(document).ready(function(){
         array_aleatorio = geraArrayDesordenado(tamanhoArray);
 
         //Faz uma cópia do array original para não alterar o array original por referência
-        const arrayOriginal  = array_aleatorio.slice();
+        const arrayOriginal  = array_aleatorio.slice();//TODO: achar forma adequada de exibr array original
         const arrayOrdenado = array_aleatorio.slice();
         const arrayOriginalCopia = array_aleatorio.slice();
 
@@ -41,8 +41,7 @@ $(document).ready(function(){
         bubbleSortContadorTrocas(arrayOriginalCopia).then(value => ExibirResuladosAnalise(value));
 
 
-        //Seta dados na tela
-        $("#arrayOriginal").html(blocosHTMLdeArray(arrayOriginal, "azul",-1));
+        //Seta tempo gasto na tela.
         $("#tempoGasto").html(JSON.stringify(tempoGasto) + "ms.");
 
     }
