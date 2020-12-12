@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>OrdenaShow</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>OrdenaShow</title>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="style.css">
+      <script src="https://use.fontawesome.com/a265d0559a.js"></script>
 
   </head>
   <body class="">
@@ -48,30 +49,33 @@
     <form class="form-inline">
         <div class="form-group mx-sm-3 mb-2">
           <label for="tamanhoArray" class="sr-only">Tamanho do array</label>
-          <input type="number" class="form-control" id="tamanhoArray" placeholder="Tamanho do array">
+          <input id="tamanhoArray" type="number" class="form-control" value="15"  placeholder="Tamanho do array">
         </div>
-        <button type="button" class="btn btn-primary mb-2" id="executar_bubble">Ordena!</button>
+        <button id="executar_bubble" type="button" class="btn btn-primary mb-2">Ordena!</button>
       </form>
 
     <div id="exibeMetodo">
-        <div class="row m-4">
-        <div id="apresentaArrayOriginal" class="">
-            Array original:
-            <div id="arrayOriginal" class="d-flex align-items-end"></div>
+
+        <div class="d-flex justfy-content-center flex-column ">
+            <div class="d-flex justfy-content-center align-items-center" >
+                <p><i class="fa fa-play" style="margin-top: 20px; margin-right: 10px"></i></p>
+                <label for="velocidade-animacao"></label>
+                <input id="velocidade-animacao" class="slider-velociade" title="Velocidade da Animação" type="range" value="1000" min="0" max="1950">
+                <p><i class="fa fa-forward" style="margin-top: 20px; margin-left: 10px"></i></p>
+            </div><br>
+            <div id="arrayOriginal" class="d-flex align-self-center align-items-end"></div>
         </div>
 
-        </div>
         <div class="row m-4">
-        <div id="apresentaArray" class="">
+            <div id="apresentaArray" class="">
             Array ordenado:
             <div id="arrayOrdenado" class="d-flex align-items-end mb-4"></div>
             Tempo de execução: <pre id="tempoGasto"></pre>
             Quantidade de trocas: <pre id="qtdTroca"></pre>
             Quantidade de atribuições de valor em variáveis inteiras: <pre id="qtdAtribuicoesVariaveis"></pre>
             Quantidade de comparações no loop: <pre id="qtdLoop"></pre>
+            </div>
         </div>
-        </div>
-        <pre id="tamanhoArrayHide" style="display: none !important;" value=""></pre>
     </div>
 
 
@@ -81,6 +85,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="ordenacao.js"></script>
+    <script type="text/javascript" src="JS/bubble.js"></script>
   </body>
 </html>

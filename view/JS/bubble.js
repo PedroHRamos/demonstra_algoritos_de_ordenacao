@@ -1,8 +1,24 @@
 $(document).ready(function(){
     //Cria objeto para delay:
     const delay = ms => new Promise(res => setTimeout(res, ms));
+    let array_aleatorio = geraArrayDesordenado(15);
+    ImprimirArrayIncompleto(array_aleatorio);
+    let velocidadeAnimacao = 300;
 
-    function Iniciar() { 
+    $( "#executar_bubble" ).click(function() {
+        let tamanhoArray = $("#tamanhoArray").val()
+        if(!(tamanhoArray > 1 && tamanhoArray < 31)){
+           alert("Por favor, insira valores entre 2 e 30");
+        }
+         Iniciar();
+    });
+
+    $('#tamanhoArray').on('input', function() {
+        array_aleatorio = geraArrayDesordenado($(this).val());
+        ImprimirArrayIncompleto(array_aleatorio);
+    });
+
+    function Iniciar() {
 
         //Gera vetor com o tamanho do array definido
         let tamanhoArray = $("#tamanhoArray").val();
@@ -11,7 +27,7 @@ $(document).ready(function(){
             tamanhoArray = 15;
         }
 
-        const array_aleatorio = geraArrayDesordenado(tamanhoArray);
+        array_aleatorio = geraArrayDesordenado(tamanhoArray);
 
         //Faz uma cópia do array original para não alterar o array original por referência
         const arrayOriginal  = array_aleatorio.slice();
@@ -28,10 +44,9 @@ $(document).ready(function(){
         //Seta dados na tela
         $("#arrayOriginal").html(blocosHTMLdeArray(arrayOriginal, "azul",-1));
         $("#tempoGasto").html(JSON.stringify(tempoGasto) + "ms.");
-        $("#arrayOrdenado").html(blocosHTMLdeArray(arrayOrdenado, "verde", -1));
-    
+
     }
-    
+
     const bubbleSortOriginal = function(array) {
         const timeStart = performance.now();
         let swaps;
@@ -46,11 +61,11 @@ $(document).ready(function(){
                 }
             }
         } while (swaps);// quando o swaps não for trocado para verdadeiro, não houve necessidade de trocar, portanto está ordenado.
-    
+
         const timeEnd = performance.now();
         return timeEnd - timeStart;
     };
-    
+
     const bubbleSortContadorTrocas = async (array) => {
         let swaps;
         let qtdTroca = 0;
@@ -61,7 +76,7 @@ $(document).ready(function(){
             for (let i = 0; i < array.length - 1; i++) {
                 qtdLoop++;
                 if (array[i] > array[i + 1]) {
-                    await delay(300);
+                    await delay(2000 - $('#velocidade-animacao').val());
                     ImprimirFrameAnimacao(array, i);
                     qtdTroca++;
                     let temp = array[i + 1];
@@ -94,6 +109,9 @@ $(document).ready(function(){
     function ImprimirArrayCompleto(array){
         $("#arrayOriginal").html(blocosHTMLdeArray(array, "verde", -1));
     }
+    function ImprimirArrayIncompleto(array){
+        $("#arrayOriginal").html(blocosHTMLdeArray(array, "azul", -1));
+    }
     function blocosHTMLdeArray(arrayNumeros, cor, indiceEmEvidencia){
         let html = '';
         let evidencia = false;
@@ -113,45 +131,32 @@ $(document).ready(function(){
         return html;
     }
 
-    function geraArrayDesordenado(n){
+    function geraArrayDesordenado(numeroDeElementos){
         let array = []
-        for(let x=0; x< n; x++){
-            array.push(x);
+        for(let i=0; i< numeroDeElementos; i++){
+            array.push(i);
         }
-    
-        return shuffle(array);
+        return misturar(array);
     }
     
-    function shuffle(array) {
-        let m = array.length, t, i;
+    function misturar(array) {
+        let elementoNaoAlterado = array.length;
+        let elementoAtual;
+        let elementoRestante;
     
-        // While there remain elements to shuffle…
-        while (m) {
+        // Enquanto ainda há elementos não alterados...
+        while (elementoNaoAlterado) {
       
-          // Pick a remaining element…
-          i = Math.floor(Math.random() * m--);
+          // Seleciona um elemento restante...
+          elementoRestante = Math.floor(Math.random() * elementoNaoAlterado--);
       
-          // And swap it with the current element.
-          t = array[m];
-          array[m] = array[i];
-          array[i] = t;
+          // E altera com o elemento atual.
+          elementoAtual = array[elementoNaoAlterado];
+          array[elementoNaoAlterado] = array[elementoRestante];
+          array[elementoRestante] = elementoAtual;
         }
-      
         return array;
       }
-    
-    $( "#executar_bubble" ).click(function() {
-        let tamanhoArray = $("#tamanhoArray").val()
-        if(tamanhoArray > 1 && tamanhoArray < 31){
-            $("#tamanhoArrayHide").html(JSON.stringify(tamanhoArray));
-            Iniciar();
-        }else{
-            Iniciar();
-            alert("Por favor, insira valores entre 2 e 30");
-        }
-    });
-
-    Iniciar();
 });
 
 
