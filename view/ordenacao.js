@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    //Cria objeto para delay:
+    const delay = ms => new Promise(res => setTimeout(res, ms));
 
     function Iniciar() { 
 
@@ -9,7 +11,6 @@ $(document).ready(function(){
             tamanhoArray = 15;
         }
 
-        console.log(tamanhoArray);
         const array_aleatorio = geraArrayDesordenado(tamanhoArray);
 
         //Faz uma cópia do array original para não alterar o array original por referência
@@ -21,50 +22,14 @@ $(document).ready(function(){
         let tempoGasto = bubbleSortOriginal(arrayOrdenado);
 
         //Ordena o array e obtém contagens (a contagem é separada para não afetar o tempo)
-        let arrayAnalise = bubbleSortContadorTrocas(arrayOriginalCopia);
-        let qtdTroca = arrayAnalise[0];
-        let qtdLoop = arrayAnalise[1];
-        let qtdAtribuicoesVariaveis = qtdTroca * 3;
+        bubbleSortContadorTrocas(arrayOriginalCopia).then(value => ExibirResuladosAnalise(value));
+
 
         //Seta dados na tela
-        $("#arrayOriginal").html(blocosHTMLdeArray_Azul(arrayOriginal, -1));
+        $("#arrayOriginal").html(blocosHTMLdeArray(arrayOriginal, "azul",-1));
         $("#tempoGasto").html(JSON.stringify(tempoGasto) + "ms.");
-        $("#arrayOrdenado").html(blocosHTMLdeArray_Verde(arrayOrdenado));
-        $("#qtdTroca").html(JSON.stringify(qtdTroca));
-        $("#qtdAtribuicoesVariaveis").html(JSON.stringify(qtdAtribuicoesVariaveis));
-        $("#qtdLoop").html(JSON.stringify(qtdLoop));
+        $("#arrayOrdenado").html(blocosHTMLdeArray(arrayOrdenado, "verde", -1));
     
-    }
-    
-    function blocosHTMLdeArray_Azul(arrayNumeros, indiceEmEvidencia){
-        let html = '';
-        let evidencia = false;
-        for(let i = 0; i < arrayNumeros.length; i++){
-
-            // Se valor em evidência < 0, imprimir todos os blocos com a cor azul
-            if(indiceEmEvidencia >= 0 ){
-                evidencia = indiceEmEvidencia === i;
-            }
-
-            const alturaBloco = (220/arrayNumeros.length * arrayNumeros[i]) + 22;
-            html += '<div class="d-flex align-items-end  text-center bloco-' + (evidencia? 'vermelho' : 'azul') + '" ' +
-                'style="height: '+ alturaBloco +'px;">\n' +// Muda altura de bloco de acordo com o número do array
-                '<div class="valor-bloco">'+arrayNumeros[i] + '</div>'+
-                '</div>';
-        }
-        return html;
-    }
-    
-    function blocosHTMLdeArray_Verde(arrayNumeros){
-        let html = '';
-        for(let i = 0; i < arrayNumeros.length; i++){
-            const alturaBloco = (220/arrayNumeros.length * arrayNumeros[i]) + 22;
-            html += '<div class="d-flex align-items-end bloco-verde" ' +
-                'style="height: '+ alturaBloco +'px;  width: 20px; ">\n' +// Muda altura de bloco de acordo com o número do array
-                '<div class="valor-bloco">'+arrayNumeros[i] + '</div>'+
-                '</div>';
-        }
-        return html;
     }
     
     const bubbleSortOriginal = function(array) {
@@ -86,7 +51,7 @@ $(document).ready(function(){
         return timeEnd - timeStart;
     };
     
-    const bubbleSortContadorTrocas = function(array) {
+    const bubbleSortContadorTrocas = async (array) => {
         let swaps;
         let qtdTroca = 0;
         let qtdLoop = 0;
@@ -96,6 +61,8 @@ $(document).ready(function(){
             for (let i = 0; i < array.length - 1; i++) {
                 qtdLoop++;
                 if (array[i] > array[i + 1]) {
+                    await delay(300);
+                    ImprimirFrameAnimacao(array, i);
                     qtdTroca++;
                     let temp = array[i + 1];
                     array[i + 1] = array[i];
@@ -104,12 +71,48 @@ $(document).ready(function(){
                 }
             }
         } while (swaps);// quando o swaps não for trocado para verdadeiro, não houve necessidade de trocar, portanto está ordenado.
-    
+
         analise[0] = qtdTroca;
         analise[1] = qtdLoop;
-    
+        ImprimirArrayCompleto(array);
+
         return analise;
     };
+
+    function ExibirResuladosAnalise(analise){
+        let qtdTroca = analise[0];
+        let qtdLoop = analise[1];
+        let qtdAtribuicoesVariaveis = qtdTroca * 3;
+        $("#qtdTroca").html(JSON.stringify(qtdTroca));
+        $("#qtdAtribuicoesVariaveis").html(JSON.stringify(qtdAtribuicoesVariaveis));
+        $("#qtdLoop").html(JSON.stringify(qtdLoop));
+    }
+
+    function ImprimirFrameAnimacao(array, indice){
+        $("#arrayOriginal").html(blocosHTMLdeArray(array,"laranja", indice));
+    }
+    function ImprimirArrayCompleto(array){
+        $("#arrayOriginal").html(blocosHTMLdeArray(array, "verde", -1));
+    }
+    function blocosHTMLdeArray(arrayNumeros, cor, indiceEmEvidencia){
+        let html = '';
+        let evidencia = false;
+        for(let i = 0; i < arrayNumeros.length; i++){
+
+            // Se valor em evidência < 0, imprimir todos os blocos com a cor selecionada
+            if(indiceEmEvidencia >= 0 ){
+                evidencia = indiceEmEvidencia === i;
+            }
+
+            const alturaBloco = (220/arrayNumeros.length * arrayNumeros[i]) + 22;
+            html += '<div class="d-flex align-items-end  text-center bloco-' + (evidencia? 'vermelho' : cor) + '" ' +
+                'style="height: '+ alturaBloco +'px;">\n' +// Muda altura de bloco de acordo com o número do array
+                '<div class="valor-bloco">'+arrayNumeros[i] + '</div>'+
+                '</div>';
+        }
+        return html;
+    }
+
     function geraArrayDesordenado(n){
         let array = []
         for(let x=0; x< n; x++){
@@ -147,9 +150,8 @@ $(document).ready(function(){
             alert("Por favor, insira valores entre 2 e 30");
         }
     });
+
     Iniciar();
-    }
-    
-);
+});
 
 
