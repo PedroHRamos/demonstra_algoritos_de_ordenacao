@@ -74,9 +74,9 @@ $(document).ready(function(){
             swaps = false;
             for (let i = 0; i < array.length - 1; i++) {
                 qtdLoop++;
+                await delay(2000 - $('#velocidade-animacao').val());
+                ImprimirFrameAnimacao(array, i, i + 1);
                 if (array[i] > array[i + 1]) {
-                    await delay(2000 - $('#velocidade-animacao').val());
-                    ImprimirFrameAnimacao(array, i);
                     qtdTroca++;
                     let temp = array[i + 1];
                     array[i + 1] = array[i];
@@ -102,27 +102,33 @@ $(document).ready(function(){
         $("#qtdLoop").html(JSON.stringify(qtdLoop));
     }
 
-    function ImprimirFrameAnimacao(array, indice){
-        $("#arrayOriginal").html(blocosHTMLdeArray(array,"laranja", indice));
+    function ImprimirFrameAnimacao(array, indice, comparacao){
+        $("#arrayOriginal").html(blocosHTMLdeArray(array,"amarelo", indice, comparacao));
     }
     function ImprimirArrayCompleto(array){
-        $("#arrayOriginal").html(blocosHTMLdeArray(array, "verde", -1));
+        $("#arrayOriginal").html(blocosHTMLdeArray(array, "verde", -1, -1));
     }
     function ImprimirArrayIncompleto(array){
-        $("#arrayOriginal").html(blocosHTMLdeArray(array, "azul", -1));
+        $("#arrayOriginal").html(blocosHTMLdeArray(array, "azul", -1, -1));
     }
-    function blocosHTMLdeArray(arrayNumeros, cor, indiceEmEvidencia){
+    function blocosHTMLdeArray(arrayNumeros, cor, indiceEmEvidencia, indiceDaComparacao){
         let html = '';
         let evidencia = false;
+        let comparacao = false;
         for(let i = 0; i < arrayNumeros.length; i++){
 
             // Se valor em evidência < 0, imprimir todos os blocos com a cor selecionada
             if(indiceEmEvidencia >= 0 ){
                 evidencia = indiceEmEvidencia === i;
             }
+            if(indiceDaComparacao >= 0 ){
+                comparacao = indiceDaComparacao === i;
+            }
+
 
             const alturaBloco = (220/arrayNumeros.length * arrayNumeros[i]) + 22;
-            html += '<div class="d-flex align-items-end  text-center bloco-' + (evidencia? 'vermelho' : cor) + '" ' +
+            html += '<div class="d-flex align-items-end  text-center ' +
+                'bloco-' + (evidencia? 'vermelho' : (comparacao ? 'laranja' :cor)) + '" ' +
                 'style="height: '+ alturaBloco +'px;">\n' +// Muda altura de bloco de acordo com o número do array
                 '<div class="valor-bloco">'+arrayNumeros[i] + '</div>'+
                 '</div>';
