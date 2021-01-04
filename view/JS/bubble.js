@@ -1,8 +1,8 @@
 $(document).ready(function(){
     //Cria objeto para delay:
     const delay = ms => new Promise(res => setTimeout(res, ms));
-    let array_aleatorio = geraArrayDesordenado(15);
-    ImprimirArrayIncompleto(array_aleatorio);
+    let arrayAleatorio = geraArrayDesordenado(15);
+    ImprimirArrayIncompleto(arrayAleatorio);
     let velocidadeAnimacao = 300;
 
     $( "#executar_bubble" ).click(function() {
@@ -14,8 +14,8 @@ $(document).ready(function(){
     });
 
     $('#tamanhoArray').on('input', function() {
-        array_aleatorio = geraArrayDesordenado($(this).val());
-        ImprimirArrayIncompleto(array_aleatorio);
+        arrayAleatorio = geraArrayDesordenado($(this).val());
+        ImprimirArrayIncompleto(arrayAleatorio);
     });
 
     function Iniciar() {
@@ -27,12 +27,12 @@ $(document).ready(function(){
             tamanhoArray = 15;
         }
 
-        array_aleatorio = geraArrayDesordenado(tamanhoArray);
+        arrayAleatorio = geraArrayDesordenado(tamanhoArray);
 
         //Faz uma cópia do array original para não alterar o array original por referência
-        const arrayOriginal  = array_aleatorio.slice();//TODO: achar forma adequada de exibr array original
-        const arrayOrdenado = array_aleatorio.slice();
-        const arrayOriginalCopia = array_aleatorio.slice();
+        const arrayOriginal  = arrayAleatorio.slice();//TODO: achar forma adequada de exibr array original
+        const arrayOrdenado = arrayAleatorio.slice();
+        const arrayOriginalCopia = arrayAleatorio.slice();
 
         //Ordena o array desordenado e salva tempo gasto para tal
         let tempoGasto = bubbleSortOriginal(arrayOrdenado);
