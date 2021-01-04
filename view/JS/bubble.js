@@ -7,8 +7,8 @@ $(document).ready(function(){
 
     $( "#executar_bubble" ).click(function() {
         let tamanhoArray = $("#tamanhoArray").val()
-        if(!(tamanhoArray > 1 && tamanhoArray < 31)){
-           alert("Por favor, insira valores entre 2 e 30");
+        if(!(tamanhoArray > 1 && tamanhoArray < 76)){
+           alert("Por favor, insira valores entre 2 e 75");
         }
          Iniciar();
     });

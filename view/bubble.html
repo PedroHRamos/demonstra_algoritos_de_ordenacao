@@ -46,7 +46,12 @@
     </nav>
     <!-- NAVBAR FIM -->
 
-    <form class="form-inline">
+    <div class="mt-5 ml-5 mr-5">
+      <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalinfobotaoordenar">
+        <b>(?)</b>
+      </button>
+    </div>
+    <form class="form-inline ml-5 mr-5">
         <div class="form-group mx-sm-3 mb-2">
           <label for="tamanhoArray" class="sr-only">Tamanho do array</label>
           <input id="tamanhoArray" type="number" class="form-control" value="15"  placeholder="Tamanho do array">
@@ -56,25 +61,129 @@
 
     <div id="exibeMetodo">
 
-        <div class="d-flex justfy-content-center flex-column ">
+        <div class="mt-5 ml-5 mr-5">
+          <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalinfovelocidadeordenacao">
+            <b>(?)</b>
+          </button>
+        </div>
+
+        <div class="d-flex justfy-content-center flex-column ml-5 mr-5 mb-5">
             <div class="d-flex justfy-content-center align-items-center" >
                 <p><i class="fa fa-play" style="margin-top: 20px; margin-right: 10px"></i></p>
                 <label for="velocidade-animacao"></label>
-                <input id="velocidade-animacao" class="slider-velociade" title="Velocidade da Animação" type="range" value="1000" min="0" max="1950">
+                <input id="velocidade-animacao" class="slider-velociade" title="Velocidade da Animação" type="range" value="1250" min="0" max="2500">
                 <p><i class="fa fa-forward" style="margin-top: 20px; margin-left: 10px"></i></p>
             </div><br>
             <div id="arrayOriginal" class="d-flex align-self-center align-items-end"></div>
         </div>
 
-        <div class="row m-4">
-            <div id="apresentaArray" class="">
+        <div class="row m-5">
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Critério</th>
+                <th scope="col">Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Tempo de execução 
+                  <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalinfotempoordenacao">
+                    <b>(?)</b>
+                  </button></td>
+                <td id="tempoGasto"></td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Quantidade de trocas</td>
+                <td id="qtdTroca"></td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Quantidade de atribuições de valor em variáveis inteiras</td>
+                <td id="qtdAtribuicoesVariaveis"></td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>Quantidade de comparações no loop</td>
+                <td id="qtdLoop"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- <div id="apresentaArray" class="">
             Array ordenado:
             <div id="arrayOrdenado" class="d-flex align-items-end mb-4"></div>
             Tempo de execução: <pre id="tempoGasto"></pre>
             Quantidade de trocas: <pre id="qtdTroca"></pre>
             Quantidade de atribuições de valor em variáveis inteiras: <pre id="qtdAtribuicoesVariaveis"></pre>
             Quantidade de comparações no loop: <pre id="qtdLoop"></pre>
+          </div> -->
+
+          <!-- Modal da velocidade da ordenação-->
+          <div class="modal fade" id="modalinfobotaoordenar" tabindex="-1" role="dialog" aria-labelledby="modalinfobotaoordenar" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalinfo"><b>Sobre a ordenação:</b></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Ao definir o tammanho do vetor e iniciar a ordenação, começa a apresentação visual do algorítmmo e começo da contabilização dos dados.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <!-- Modal da velocidade da ordenação-->
+          <div class="modal fade" id="modalinfovelocidadeordenacao" tabindex="-1" role="dialog" aria-labelledby="modalinfovelocidadeordenacao" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalinfo"><b>Sobre a velocidade de ordenação:</b></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Ao ajustar essa barra é ajustada a velocidade da apresentação visual da ordenação.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mmodal da do critério de temmpo de ordenação-->
+          <div class="modal fade" id="modalinfotempoordenacao" tabindex="-1" role="dialog" aria-labelledby="modalinfotempoordenacao" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalinfo"><b>Sobre o tempo de ordenação:</b></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Para fazer a análise justa de cada método de ordenação, antes da apresentação visual da ordenação, o algoritmo é executado para medir o temmpo de execução.</p>
+                  <p>Posteriormente, as outras análises são executadas durante a execução que o usuário acompanha em tela. Para não influenciar no tempo da primeira execução.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
     </div>
 
