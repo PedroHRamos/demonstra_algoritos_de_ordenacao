@@ -52,6 +52,20 @@
     background: #FA7558;
 }
 
+.bloco-ciano{
+    margin: 0;
+    width: 20px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background: #95f1f1;
+}
+
+.bloco-cinza{
+    margin: 0;
+    width: 20px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background: #7e7e7e;
+}
+
 .slider-velociade{
     -webkit-appearance: none;
     width: 100%;
