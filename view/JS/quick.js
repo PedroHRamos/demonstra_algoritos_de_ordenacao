@@ -53,53 +53,6 @@ $(document).ready(function(){
 
     }
 
-    /*const bubbleSortOriginal = function(array) {
-        const timeStart = performance.now();
-        let swaps;
-        do {
-            swaps = false;
-            for (let i = 0; i < array.length - 1; i++) {
-                if (array[i] > array[i + 1]) {
-                    let temp = array[i + 1];
-                    array[i + 1] = array[i];
-                    array[i] = temp;
-                    swaps = true;
-                }
-            }
-        } while (swaps);// quando o swaps não for trocado para verdadeiro, não houve necessidade de trocar, portanto está ordenado.
-
-        const timeEnd = performance.now();
-        return timeEnd - timeStart;
-    };
-
-    const bubbleSortContadorTrocas = async (array) => {
-        let swaps;
-        let qtdTroca = 0;
-        let qtdLoop = 0;
-        let analise = [0, 0]; // [QtdTrocas, CoparacoesLoop]
-        do {
-            swaps = false;
-            for (let i = 0; i < array.length - 1; i++) {
-                qtdLoop++;
-                if (array[i] > array[i + 1]) {
-                    await delay(2000 - $('#velocidade-animacao').val());
-                    ImprimirFrameAnimacao(array, i);
-                    qtdTroca++;
-                    let temp = array[i + 1];
-                    array[i + 1] = array[i];
-                    array[i] = temp;
-                    swaps = true;
-                }
-            }
-        } while (swaps);// quando o swaps não for trocado para verdadeiro, não houve necessidade de trocar, portanto está ordenado.
-
-        analise[0] = qtdTroca;
-        analise[1] = qtdLoop;
-        ImprimirArrayCompleto(array);
-
-        return analise;
-    };*/
-
     function swap(items, leftIndex, rightIndex){
         var temp = items[leftIndex];
         items[leftIndex] = items[rightIndex];
@@ -138,9 +91,9 @@ $(document).ready(function(){
             while (items[j] > pivot) {
                 j--;
             }
-            if (i <= j) {
-                await delay(2000 - $('#velocidade-animacao').val());
+            await delay(2000 - $('#velocidade-animacao').val());
                 ImprimirFrameAnimacao(items, pivot,i,j);
+            if (i <= j) {
                 swap(items, i, j); //swap two elements
                 qtdTroca++;
                 qtdLoop++;
@@ -194,7 +147,7 @@ $(document).ready(function(){
     }
 
     function ImprimirFrameAnimacao(array, pivot, indiceEsquerda, indiceDireita){
-        $("#arrayOriginal").html(blocosHTMLdeArray( array,"laranja", pivot, indiceEsquerda, indiceDireita));
+        $("#arrayOriginal").html(blocosHTMLdeArray( array,"amarelo", pivot, indiceEsquerda, indiceDireita));
     }
     function ImprimirArrayCompleto(array){
         $("#arrayOriginal").html(blocosHTMLdeArray(array, "verde", -1, -1, -1));
@@ -222,7 +175,7 @@ $(document).ready(function(){
 
             const alturaBloco = (220/arrayNumeros.length * arrayNumeros[i]) + 22;
             html += '<div class="d-flex align-items-end  text-center ' + 
-                'bloco-' + (ePivot? 'vermelho' : (eIEsquerda? 'cinza' : (eIDireita? 'ciano' : cor))) + '" ' +
+                'bloco-' + (ePivot? 'vermelho-classico' : (eIEsquerda? 'azul-escuro' : (eIDireita? 'azul' : cor))) + '" ' +
                 'style="height: '+ alturaBloco +'px;">\n' +// Muda altura de bloco de acordo com o número do array
                 '<div class="valor-bloco">'+arrayNumeros[i] + '</div>'+
                 '</div>';

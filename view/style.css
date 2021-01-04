@@ -38,11 +38,18 @@
     background: #ae163e;
 }
 
+.bloco-vermelho-classico{
+    margin: 0;
+    width: 20px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background: #ff0000;
+}
+
 .bloco-amarelo{
     margin: 0;
     width: 20px;
     border: 1px solid rgba(0, 0, 0, .2);
-    background: greenyellow;
+    background: rgb(208, 255, 0);
 }
 
 .bloco-laranja{
@@ -52,18 +59,18 @@
     background: #FA7558;
 }
 
-.bloco-ciano{
+.bloco-azul{
     margin: 0;
     width: 20px;
     border: 1px solid rgba(0, 0, 0, .2);
-    background: #95f1f1;
+    background: #2e7bd3;
 }
 
-.bloco-cinza{
+.bloco-azul-escuro{
     margin: 0;
     width: 20px;
     border: 1px solid rgba(0, 0, 0, .2);
-    background: #7e7e7e;
+    background: #132cb9;
 }
 
 .slider-velociade{
