@@ -38,7 +38,7 @@ $(document).ready(function(){
         let tempoGasto = bubbleSortOriginal(arrayOrdenado);
 
         //Ordena o array e obtém contagens (a contagem é separada para não afetar o tempo)
-        bubbleSortContadorTrocas(arrayOriginalCopia).then(value => ExibirResuladosAnalise(value));
+        bubbleSortContadorTrocas(arrayOriginalCopia).then(analise => ExibirResuladosAnalise(analise));
 
 
         //Seta tempo gasto na tela.
