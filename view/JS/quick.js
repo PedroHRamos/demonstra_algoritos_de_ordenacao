@@ -83,7 +83,6 @@ $(document).ready(function(){
         var pivot   = items[Math.floor((right + left) / 2)], //middle element
             i       = left, //left pointer
             j       = right; //right pointer
-
         while (i <= j) {
             while (items[i] < pivot) {
                 i++;
@@ -92,7 +91,7 @@ $(document).ready(function(){
                 j--;
             }
             await delay(2000 - $('#velocidade-animacao').val());
-                ImprimirFrameAnimacao(items, pivot,i,j);
+            ImprimirFrameAnimacao(items, pivot,i,j);
             if (i <= j) {
                 swap(items, i, j); //swap two elements
                 qtdTroca++;
