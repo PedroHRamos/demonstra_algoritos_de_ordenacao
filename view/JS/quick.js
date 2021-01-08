@@ -7,7 +7,7 @@ $(document).ready(function(){
     let qtdLoop = 0;
     
 
-    $( "#executar_bubble" ).click(function() {
+    $( "#executar_quick" ).click(function() {
         let tamanhoArray = $("#tamanhoArray").val()
         if(!(tamanhoArray > 1 && tamanhoArray < 76)){
            alert("Por favor, insira valores entre 2 e 75");
@@ -39,7 +39,7 @@ $(document).ready(function(){
         //Ordena o array desordenado e salva tempo gasto para tal
         const timeStart = performance.now();
         let tempoGasto = timeStart;
-        quickSortOriginal(arrayOrdenado, 0, arrayOrdenado.length - 1);
+        await  quickSortOriginal(arrayOrdenado, 0, arrayOrdenado.length - 1);
         const timeEnd = performance.now();
         tempoGasto = timeEnd - timeStart;
 
@@ -103,15 +103,15 @@ $(document).ready(function(){
         return i;
     }
 
-    function quickSortOriginal(items, left, right) {
+    async function quickSortOriginal(items, left, right) {
         var index;
         if (items.length > 1) {
             index = partition(items, left, right); //index returned from partition
             if (left < index - 1) { //more elements on the left side of the pivot
-                quickSortOriginal(items, left, index - 1);
+                await quickSortOriginal(items, left, index - 1);
             }
             if (index < right) { //more elements on the right side of the pivot
-                quickSortOriginal(items, index, right);
+                await quickSortOriginal(items, index, right);
             }
         }
         return items;
