@@ -107,3 +107,11 @@
     background: #13b4ff;
     cursor: pointer;
 }
+
+html{
+    font-family: "Times New Roman", Times, serif;
+}
+
+.display-4{
+font-size: 40px !important;
+}
