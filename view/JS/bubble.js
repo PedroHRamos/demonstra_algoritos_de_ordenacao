@@ -89,6 +89,8 @@ $(document).ready(function(){
                     array[i + 1] = array[i];
                     array[i] = temp;
                     swaps = true;
+                    await delay(2000 - $('#velocidade-animacao').val());
+                    ImprimirFrameAnimacao(array, i+1, i);
                 }
             }
         } while (swaps);// quando o swaps não for trocado para verdadeiro, não houve necessidade de trocar, portanto está ordenado.
