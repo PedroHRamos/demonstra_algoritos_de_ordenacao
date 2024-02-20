@@ -78,6 +78,7 @@ $(document).ready(function(){
                 j--;
             }
             if (i <= j) {
+                qtdTroca++;
                 swap(items, i, j); //swap two elements
                 i++;
                 j--;
@@ -101,10 +102,11 @@ $(document).ready(function(){
             ImprimirFrameAnimacao(items, pivot,i,j);
             if (i <= j) {
                 swap(items, i, j); //swap two elements
-                qtdTroca++;
                 qtdLoop++;
                 i++;
                 j--;
+                await delay(2000 - $('#velocidade-animacao').val());
+                ImprimirFrameAnimacaoPosSwap(items, pivot,i-1,j+1);
             }
         }
         return i;
@@ -152,20 +154,24 @@ $(document).ready(function(){
         qtdTroca = 0;
     }
 
+    function ImprimirFrameAnimacaoPosSwap(array, pivot, indiceEsquerda, indiceDireita){
+        $("#arrayOriginal").html(blocosHTMLdeArray( array,"amarelo", pivot, indiceEsquerda, indiceDireita, true));
+    }
     function ImprimirFrameAnimacao(array, pivot, indiceEsquerda, indiceDireita){
-        $("#arrayOriginal").html(blocosHTMLdeArray( array,"amarelo", pivot, indiceEsquerda, indiceDireita));
+        $("#arrayOriginal").html(blocosHTMLdeArray( array,"amarelo", pivot, indiceEsquerda, indiceDireita, false));
     }
     function ImprimirArrayCompleto(array){
-        $("#arrayOriginal").html(blocosHTMLdeArray(array, "verde", -1, -1, -1));
+        $("#arrayOriginal").html(blocosHTMLdeArray(array, "verde", -1, -1, -1, false));
     }
     function ImprimirArrayIncompleto(array){
-        $("#arrayOriginal").html(blocosHTMLdeArray(array, "azul", -1, -1, -1));
+        $("#arrayOriginal").html(blocosHTMLdeArray(array, "azul", -1, -1, -1, false));
     }
-    function blocosHTMLdeArray(arrayNumeros, cor, pivot, indiceEsquerda, indiceDireita){
+    function blocosHTMLdeArray(arrayNumeros, cor, pivot, indiceEsquerda, indiceDireita, hasSwap){
         let html = '';
         let ePivot = false;
         let eIEsquerda = false;
         let eIDireita = false;
+        let aux = false;
         for(let i = 0; i < arrayNumeros.length; i++){
 
             // Se valor em evidência < 0, imprimir todos os blocos com a cor selecionada
@@ -180,6 +186,13 @@ $(document).ready(function(){
             }
 
             const alturaBloco = (220/arrayNumeros.length * arrayNumeros[i]) + 22;
+
+            if(hasSwap){
+                aux = eIDireita;
+                eIDireita = eIEsquerda;
+                eIEsquerda = aux;
+            }
+
             html += '<div class="d-flex align-items-end  text-center ' + 
                 'bloco-' + (ePivot? 'vermelho-classico' : (eIEsquerda? 'azul-escuro' : (eIDireita? 'azul' : cor))) + '" ' +
                 'style="height: '+ alturaBloco +'px;">\n' +// Muda altura de bloco de acordo com o número do array

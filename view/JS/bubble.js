@@ -89,6 +89,8 @@ $(document).ready(function(){
                     array[i + 1] = array[i];
                     array[i] = temp;
                     swaps = true;
+                    await delay(2000 - $('#velocidade-animacao').val());
+                    ImprimirFrameAnimacaoPosSwap(array, i, i+1);
                 }
             }
         } while (swaps);// quando o swaps não for trocado para verdadeiro, não houve necessidade de trocar, portanto está ordenado.
@@ -109,6 +111,9 @@ $(document).ready(function(){
         $("#qtdLoop").html(JSON.stringify(qtdLoop));
     }
 
+    function ImprimirFrameAnimacaoPosSwap(array, indice, comparacao){
+        $("#arrayOriginal").html(blocosHTMLdeArray(array,"amarelo", comparacao, indice));
+    }
     function ImprimirFrameAnimacao(array, indice, comparacao){
         $("#arrayOriginal").html(blocosHTMLdeArray(array,"amarelo", indice, comparacao));
     }
