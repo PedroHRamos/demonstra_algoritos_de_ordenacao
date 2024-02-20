@@ -4,13 +4,18 @@ $(document).ready(function(){
     let arrayAleatorio = geraArrayDesordenado(15);
     ImprimirArrayIncompleto(arrayAleatorio);
     let velocidadeAnimacao = 300;
+    let isRunning = false;
 
     $( "#executar_bubble" ).click(function() {
         let tamanhoArray = $("#tamanhoArray").val()
         if(!(tamanhoArray > 1 && tamanhoArray < 76)){
            alert("Por favor, insira valores entre 2 e 75");
         }
-         Iniciar();
+
+        if(isRunning)
+            return;
+
+        Iniciar();
     });
 
     $('#tamanhoArray').on('input', function() {
@@ -18,7 +23,9 @@ $(document).ready(function(){
         ImprimirArrayIncompleto(arrayAleatorio);
     });
 
-    function Iniciar() {
+    async function Iniciar() {
+
+        isRunning = true;
 
         //Gera vetor com o tamanho do array definido
         let tamanhoArray = $("#tamanhoArray").val();
@@ -38,12 +45,12 @@ $(document).ready(function(){
         let tempoGasto = bubbleSortOriginal(arrayOrdenado);
 
         //Ordena o array e obtém contagens (a contagem é separada para não afetar o tempo)
-        bubbleSortContadorTrocas(arrayOriginalCopia).then(analise => ExibirResuladosAnalise(analise));
+        await bubbleSortContadorTrocas(arrayOriginalCopia).then(analise => ExibirResuladosAnalise(analise));
 
 
         //Seta tempo gasto na tela.
         $("#tempoGasto").html(JSON.stringify(tempoGasto) + "ms.");
-
+        isRunning = false;
     }
 
     const bubbleSortOriginal = function(array) {
