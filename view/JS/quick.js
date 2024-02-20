@@ -5,6 +5,7 @@ $(document).ready(function(){
     ImprimirArrayIncompleto(array_aleatorio);
     let qtdTroca = 0;
     let qtdLoop = 0;
+    let isRunning = false;
     
 
     $( "#executar_quick" ).click(function() {
@@ -12,7 +13,11 @@ $(document).ready(function(){
         if(!(tamanhoArray > 1 && tamanhoArray < 76)){
            alert("Por favor, insira valores entre 2 e 75");
         }
-         Iniciar();
+
+        if(isRunning)
+            return;
+
+        Iniciar();
     });
 
     $('#tamanhoArray').on('input', function() {
@@ -21,6 +26,8 @@ $(document).ready(function(){
     });
 
     async function Iniciar() {
+
+        isRunning = true;
 
         //Gera vetor com o tamanho do array definido
         let tamanhoArray = $("#tamanhoArray").val();
@@ -50,7 +57,7 @@ $(document).ready(function(){
 
         //Seta tempo gasto na tela.
         $("#tempoGasto").html(JSON.stringify(tempoGasto) + "ms.");
-
+        isRunning = false;
     }
 
     function swap(items, leftIndex, rightIndex){
