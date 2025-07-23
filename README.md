@@ -2,6 +2,9 @@
 
 Este projeto é uma aplicação web interativa para demonstrar visualmente o funcionamento de diferentes algoritmos de ordenação, incluindo BubbleSort, QuickSort, MergeSort, HeapSort e InsertionSort. O objetivo é facilitar o entendimento dos métodos de ordenação através de animações, contagem de operações e análise de desempenho.
 
+<img width="1863" height="904" alt="image" src="https://github.com/user-attachments/assets/5662c27e-b8ef-40aa-a13b-82e60fbe1f52" />
+
+
 ## Funcionalidades
 
 - **Visualização Animada**: Cada algoritmo exibe passo a passo o processo de ordenação de um array, com destaque para comparações, trocas e pivôs (quando aplicável).
@@ -20,9 +23,6 @@ Este projeto é uma aplicação web interativa para demonstrar visualmente o fun
 
 - **BubbleSort**: Ordenação por bolha, com animação das comparações e trocas.
 - **QuickSort**: Ordenação rápida, com destaque para o pivô e as partições.
-- **MergeSort**: Ordenação por intercalação, mostrando as divisões e junções dos subarrays.
-- **HeapSort**: Ordenação por heap, exibindo a construção e manutenção do heap.
-- **InsertionSort**: Ordenação por inserção, animando as inserções e deslocamentos.
 
 ## Tecnologias utilizadas
 
